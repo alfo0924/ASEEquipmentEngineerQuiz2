@@ -3,30 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>日月光設備工程師常見問題測驗</title>
+    <title>半導體設備工程師面試測驗</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
     <header>
-        <h1>日月光設備工程師常見問題測驗</h1>
-        <div id="score-container" class="hidden">
-            <div id="score-display"></div>
-            <div id="analysis"></div>
-        </div>
+        <h1>半導體設備工程師面試測驗</h1>
+        <p>本測驗包含20道常見面試題目，測試您對半導體設備工程領域的了解程度。</p>
     </header>
 
-    <main id="quiz-container">
+    <div id="score-section" class="hidden">
+        <div class="score-container">
+            <h2>測驗結果</h2>
+            <div class="score-display">
+                <span id="score">0</span> / 20
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill"></div>
+            </div>
+            <div id="analysis-summary"></div>
+        </div>
+    </div>
+
+    <div id="quiz-container">
         <form id="quiz-form">
             <!-- 題目會由JavaScript動態生成 -->
         </form>
 
         <div class="button-container">
-            <button id="submit-btn" type="button">送出答案</button>
+            <button id="submit-btn" type="button">提交答案</button>
+            <button id="reset-btn" type="button" class="hidden">重新測驗</button>
         </div>
-    </main>
+    </div>
 </div>
-
 <script src="script.js"></script>
 </body>
 </html>

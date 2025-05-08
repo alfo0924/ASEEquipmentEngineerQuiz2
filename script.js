@@ -1,375 +1,450 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // 測驗題目資料
-    const quizData = [
-        {
-            question: "1. 日月光設備工程師的主要工作內容是什麼？",
-            options: [
-                "只負責文書處理和報表製作",
-                "定期維護保養生產設備機台、故障排除及異常查修",
-                "只負責產品品質檢驗",
-                "主要負責客戶接待和業務推廣"
-            ],
-            correctAnswer: 1,
-            explanation: "設備工程師主要負責定期維護保養生產設備機台、故障排除及異常查修，以及設備問題改善和維持生產機台設備的正常運轉。"
-        },
-        {
-            question: "2. 日月光設備工程師的工作時間安排通常是？",
-            options: [
-                "固定朝九晚五，不需輪班",
-                "三班制，每週輪換一次",
-                "四班二輪(做2休2)，約2-3個月輪一次早晚班",
-                "固定夜班，不需輪換"
-            ],
-            correctAnswer: 2,
-            explanation: "日月光設備工程師需配合四班二輪(做2休2)輪班，約2-3個月輪一次早晚班。日班時間通常為07:30~19:35。"
-        },
-        {
-            question: "3. 日月光設備工程師的面試通常包含哪些測驗？",
-            options: [
-                "只有主管面試，沒有筆試",
-                "英文測驗和邏輯測驗",
-                "體能測驗和專業技能測驗",
-                "心理測驗和性格測驗"
-            ],
-            correctAnswer: 1,
-            explanation: "日月光設備工程師的面試通常包含英文測驗(類似多益的題目)和邏輯測驗(圖形、數字、文字測驗)。"
-        },
-        {
-            question: "4. 日月光設備工程師的工作環境特點是？",
-            options: [
-                "可以自由穿著，無特殊要求",
-                "需要穿無塵衣，進公司禁止攜帶智慧型手機",
-                "可以遠端工作，不需要到現場",
-                "主要在戶外工作環境"
-            ],
-            correctAnswer: 1,
-            explanation: "日月光設備工程師需要穿無塵衣，進公司禁止攜帶智慧型手機，這是半導體產業的標準要求。"
-        },
-        {
-            question: "5. 日月光設備工程師面試中，主管最常問到的問題是？",
-            options: [
-                "政治立場和宗教信仰",
-                "家庭背景和婚姻狀況",
-                "自我介紹、專業能力和是否能配合加班",
-                "興趣愛好和休閒活動"
-            ],
-            correctAnswer: 2,
-            explanation: "面試中主管最常問到的問題包括自我介紹、專業能力、是否能配合加班、對公司的了解等。"
-        },
-        {
-            question: "6. 日月光設備工程師的薪資範圍通常是？",
-            options: [
-                "月薪25,000至30,000元",
-                "月薪33,000至50,000元",
-                "月薪20,000至25,000元",
-                "固定月薪60,000元"
-            ],
-            correctAnswer: 1,
-            explanation: "根據資料，日月光設備工程師的薪資範圍通常是月薪33,000至50,000元，實際薪資可能因個人資歷或績效而異。"
-        },
-        {
-            question: "7. 日月光設備工程師的日班工作時間通常是？",
-            options: [
-                "09:00-17:00",
-                "08:00-16:00",
-                "07:30-19:35",
-                "06:00-14:00"
-            ],
-            correctAnswer: 2,
-            explanation: "日月光設備工程師的日班工作時間通常是07:30-19:35，夜班則是19:00-07:00左右。"
-        },
-        {
-            question: "8. 日月光設備工程師面試中的英文測驗通常是什麼形式？",
-            options: [
-                "全英文面試對話",
-                "英文演講",
-                "仿多益的題目，包含聽力和閱讀",
-                "英文寫作測驗"
-            ],
-            correctAnswer: 2,
-            explanation: "日月光英文測驗通常是仿多益的題目，包含聽力(圖片題、對話問題回答)及閱讀(填空單字及文法題、文章閱讀)。"
-        },
-        {
-            question: "9. 日月光設備工程師需要具備什麼學歷要求？",
-            options: [
-                "博士以上",
-                "高中職即可",
-                "專科、大學或碩士",
-                "只看工作經驗，無學歷要求"
-            ],
-            correctAnswer: 2,
-            explanation: "日月光設備工程師的學歷要求通常是專科、大學或碩士，相關科系優先考慮。"
-        },
-        {
-            question: "10. 日月光設備工程師的面試流程通常包括哪些環節？",
-            options: [
-                "只有一輪主管面試",
-                "筆試、主管面試和人資面試",
-                "團體面試和實作測驗",
-                "電話面試和視訊面試"
-            ],
-            correctAnswer: 1,
-            explanation: "日月光設備工程師的面試流程通常包括筆試(英文和邏輯測驗)、主管面試和人資面試。"
-        },
-        {
-            question: "11. 日月光設備工程師的工作是否需要相關經驗？",
-            options: [
-                "必須有5年以上相關經驗",
-                "必須有3年以上相關經驗",
-                "無經驗可，公司提供完整在職訓練",
-                "只招收有10年以上經驗的資深工程師"
-            ],
-            correctAnswer: 2,
-            explanation: "日月光設備工程師無經驗可應徵，公司會提供完整在職訓練，但有相關經驗者優先考慮。"
-        },
-        {
-            question: "12. 日月光設備工程師需要具備什麼語言能力？",
-            options: [
-                "精通日語",
-                "英文聽說讀寫略通即可",
-                "必須精通英文",
-                "不需要任何外語能力"
-            ],
-            correctAnswer: 1,
-            explanation: "日月光設備工程師需要具備英文聽說讀寫略通的能力，足以應付基本工作需求。"
-        },
-        {
-            question: "13. 日月光設備工程師的工作地點主要在哪裡？",
-            options: [
-                "台北市內湖區",
-                "新竹科學園區",
-                "高雄楠梓科技產業園區",
-                "台中科學園區"
-            ],
-            correctAnswer: 2,
-            explanation: "根據資料，日月光設備工程師的工作地點主要在高雄楠梓科技產業園區(經三路26號)。"
-        },
-        {
-            question: "14. 日月光設備工程師面試中的邏輯測驗包含哪些內容？",
-            options: [
-                "只有數學計算題",
-                "圖形測驗、數字測驗和文字測驗",
-                "只有程式設計題",
-                "只有英文邏輯題"
-            ],
-            correctAnswer: 1,
-            explanation: "日月光設備工程師面試中的邏輯測驗包含圖形測驗、數字測驗和文字測驗，測試應徵者的邏輯思考能力。"
-        },
-        {
-            question: "15. 日月光設備工程師的福利包括哪些？",
-            options: [
-                "只有基本勞健保",
-                "提撥盈餘為員工分紅、三節獎金及禮金、健身房等多項福利",
-                "只有年終獎金",
-                "無任何額外福利"
-            ],
-            correctAnswer: 1,
-            explanation: "日月光提供多項福利，包括提撥5％-7％之年盈餘為員工分紅、三節獎金及禮金、健身房、假日加班免費用餐等。"
-        },
-        {
-            question: "16. 日月光設備工程師面試時，如何回答「能否配合加班」的問題最適當？",
-            options: [
-                "表示完全不能加班",
-                "表示可以配合公司需求加班",
-                "表示只能偶爾加班",
-                "表示需要額外加班費才願意加班"
-            ],
-            correctAnswer: 1,
-            explanation: "面試時回答「能否配合加班」的問題，最好表示可以配合公司需求加班，展現工作配合度和責任感。"
-        },
-        {
-            question: "17. 日月光設備工程師的主要職責之一是什麼？",
-            options: [
-                "產品設計和研發",
-                "市場行銷和客戶開發",
-                "設備問題改善及異常分析與追蹤處理",
-                "人力資源管理"
-            ],
-            correctAnswer: 2,
-            explanation: "日月光設備工程師的主要職責之一是設備問題改善及異常分析與追蹤處理，確保生產設備正常運轉。"
-        },
-        {
-            question: "18. 日月光設備工程師面試中，自我介紹應該包含哪些內容？",
-            options: [
-                "只需介紹姓名和應徵職位",
-                "詳細介紹家庭背景和成長經歷",
-                "介紹畢業學校、專長、證照和相關經驗",
-                "主要介紹個人興趣愛好"
-            ],
-            correctAnswer: 2,
-            explanation: "自我介紹應該包含畢業學校、專長、證照和相關經驗等專業資訊，時間控制在2分鐘左右為佳。"
-        },
-        {
-            question: "19. 日月光設備工程師的工作性質屬於？",
-            options: [
-                "兼職工作",
-                "約聘工作",
-                "全職工作",
-                "實習工作"
-            ],
-            correctAnswer: 2,
-            explanation: "日月光設備工程師的工作性質屬於全職工作，需要全時間投入。"
-        },
-        {
-            question: "20. 日月光設備工程師面試時，如何回答「為什麼選擇日月光」的問題最適當？",
-            options: [
-                "只因為薪水高",
-                "因為找不到其他工作",
-                "可以結合個人專長、地利因素和公司產業地位等因素",
-                "因為朋友推薦"
-            ],
-            correctAnswer: 2,
-            explanation: "回答「為什麼選擇日月光」時，最好結合個人專長、地利因素(如住在高雄)和公司產業地位(封裝測試大廠)等因素，展現對公司的了解和認同。"
-        }
-    ];
+// 測驗題目資料
+const quizData = [
+    {
+        question: "半導體設備工程師主要負責哪些工作？",
+        options: [
+            "僅負責設備維修",
+            "設備安裝、維護、故障排除及效能優化",
+            "僅負責軟體開發",
+            "僅負責產品設計"
+        ],
+        answer: 1,
+        category: "工作職責",
+        explanation: "半導體設備工程師的主要職責包括設備安裝、維護、故障排除及效能優化，確保生產線設備正常運作。"
+    },
+    {
+        question: "在半導體製程中，FOUP是什麼？",
+        options: [
+            "一種測試設備",
+            "一種晶圓拋光技術",
+            "前開式晶圓承載盒",
+            "一種光刻技術"
+        ],
+        answer: 2,
+        category: "專業知識",
+        explanation: "FOUP (Front Opening Unified Pod) 是前開式晶圓承載盒，用於300mm晶圓的存放和運送，可以保持無塵環境。"
+    },
+    {
+        question: "當設備出現異常警報時，設備工程師應該優先做什麼？",
+        options: [
+            "立即關閉設備電源",
+            "忽略警報繼續生產",
+            "檢查警報代碼並評估問題嚴重性",
+            "直接更換零件"
+        ],
+        answer: 2,
+        category: "問題處理",
+        explanation: "設備出現異常警報時，應優先檢查警報代碼並評估問題嚴重性，以確定適當的處理方式，避免不必要的停機或安全風險。"
+    },
+    {
+        question: "半導體設備工程師需要具備哪些基本技能？",
+        options: [
+            "只需要機械知識",
+            "只需要電子電路知識",
+            "機械、電子、真空、氣動、電腦等多領域知識",
+            "只需要軟體編程能力"
+        ],
+        answer: 2,
+        category: "專業技能",
+        explanation: "半導體設備工程師需要具備機械、電子、真空、氣動、電腦等多領域知識，因為半導體設備涉及多種技術的整合。"
+    },
+    {
+        question: "MTBF代表什麼意思？",
+        options: [
+            "最大故障時間",
+            "平均故障間隔時間",
+            "最小測試批次頻率",
+            "最大傳輸位元頻率"
+        ],
+        answer: 1,
+        category: "專業知識",
+        explanation: "MTBF (Mean Time Between Failures) 代表平均故障間隔時間，是衡量設備可靠性的重要指標。"
+    },
+    {
+        question: "在設備維護中，PM代表什麼？",
+        options: [
+            "產品管理",
+            "性能監控",
+            "預防性維護",
+            "問題修復"
+        ],
+        answer: 2,
+        category: "設備維護",
+        explanation: "PM (Preventive Maintenance) 代表預防性維護，是定期對設備進行檢查和維護，以預防故障發生。"
+    },
+    {
+        question: "在半導體製程中，CMP代表什麼工藝？",
+        options: [
+            "化學機械研磨",
+            "控制監測程序",
+            "臨界模式處理",
+            "晶圓切割方法"
+        ],
+        answer: 0,
+        category: "專業知識",
+        explanation: "CMP (Chemical Mechanical Polishing) 代表化學機械研磨，是半導體製程中用於平坦化晶圓表面的重要工藝。"
+    },
+    {
+        question: "設備工程師面對主管給予的未知問題時，應該如何解決？",
+        options: [
+            "直接告知無法解決",
+            "等待他人提供解決方案",
+            "系統性分析問題，收集資料，尋求協助並提出可能的解決方案",
+            "隨機嘗試不同方法"
+        ],
+        answer: 2,
+        category: "問題處理",
+        explanation: "面對未知問題，應系統性分析問題，收集相關資料，必要時尋求協助，並基於分析結果提出可能的解決方案。"
+    },
+    {
+        question: "半導體設備工程師對於工作中的「良率」(Yield)理解應該是什麼？",
+        options: [
+            "設備運行時間百分比",
+            "產品通過測試的比例",
+            "設備維修速度",
+            "員工工作效率"
+        ],
+        answer: 1,
+        category: "專業知識",
+        explanation: "良率(Yield)是指產品通過測試的比例，是衡量製程品質的重要指標，設備工程師需確保設備穩定運行以維持高良率。"
+    },
+    {
+        question: "在半導體設備中，MFC代表什麼？",
+        options: [
+            "主要故障控制",
+            "最大流量計算",
+            "質量流量控制器",
+            "多功能控制器"
+        ],
+        answer: 2,
+        category: "專業知識",
+        explanation: "MFC (Mass Flow Controller) 代表質量流量控制器，用於精確控制氣體流量，在半導體製程中非常重要。"
+    },
+    {
+        question: "設備工程師在進行故障排除時，應採取什麼策略？",
+        options: [
+            "直接更換所有可能故障的零件",
+            "等待設備完全故障再處理",
+            "系統性分析，從簡單檢查開始，逐步深入",
+            "只檢查最複雜的部分"
+        ],
+        answer: 2,
+        category: "問題處理",
+        explanation: "故障排除應採取系統性分析策略，從簡單的檢查開始，如電源、連接等，再逐步深入到更複雜的部分，以高效找出問題根源。"
+    },
+    {
+        question: "半導體設備工程師在設備安裝完成後，下一步應該做什麼？",
+        options: [
+            "直接投入生產",
+            "進行設備驗證和校準",
+            "等待下一個維護週期",
+            "更新軟體"
+        ],
+        answer: 1,
+        category: "設備維護",
+        explanation: "設備安裝完成後，應進行設備驗證和校準，確保設備各項參數符合規格要求，才能投入生產。"
+    },
+    {
+        question: "在半導體產業中，SEMI標準是指什麼？",
+        options: [
+            "半導體設備製造指南",
+            "安全環境管理指標",
+            "半導體設備材料國際標準",
+            "半導體工程師管理指南"
+        ],
+        answer: 2,
+        category: "專業知識",
+        explanation: "SEMI (Semiconductor Equipment and Materials International) 標準是半導體設備材料國際標準，用於規範半導體製造設備和材料。"
+    },
+    {
+        question: "設備工程師應如何看待「工作與生活平衡」？",
+        options: [
+            "工作永遠第一，生活可以犧牲",
+            "只關注生活品質，工作隨意應付",
+            "在確保工作品質的同時，合理安排時間兼顧生活",
+            "完全分離工作和生活，互不影響"
+        ],
+        answer: 2,
+        category: "職業發展",
+        explanation: "良好的工作與生活平衡是在確保工作品質的同時，合理安排時間兼顧生活，這有助於提高工作效率和長期職業發展。"
+    },
+    {
+        question: "半導體設備的「校準」(Calibration)主要目的是什麼？",
+        options: [
+            "提高設備運行速度",
+            "確保測量和控制的準確性",
+            "延長設備使用壽命",
+            "減少能源消耗"
+        ],
+        answer: 1,
+        category: "設備維護",
+        explanation: "設備校準的主要目的是確保測量和控制的準確性，這對於半導體製程的精確控制和產品品質至關重要。"
+    },
+    {
+        question: "在設備故障分析中，「根本原因分析」(RCA)的目的是什麼？",
+        options: [
+            "快速修復設備",
+            "找出並解決問題的根本原因，防止再次發生",
+            "確定責任歸屬",
+            "記錄故障現象"
+        ],
+        answer: 1,
+        category: "問題處理",
+        explanation: "根本原因分析(RCA)的目的是找出並解決問題的根本原因，而不僅僅是表面現象，從而防止同類問題再次發生。"
+    },
+    {
+        question: "半導體設備工程師應如何應對技術快速變化的挑戰？",
+        options: [
+            "只專注於目前使用的技術",
+            "等待公司提供培訓",
+            "持續學習新技術，參與專業社群和培訓",
+            "完全依賴設備供應商提供支援"
+        ],
+        answer: 2,
+        category: "職業發展",
+        explanation: "面對技術快速變化，設備工程師應持續學習新技術，主動參與專業社群和培訓，保持技術敏感度和競爭力。"
+    },
+    {
+        question: "在半導體設備中，「Particle」(微粒)控制為何重要？",
+        options: [
+            "只影響設備外觀，不影響功能",
+            "微粒可能導致晶片缺陷，降低良率",
+            "只影響設備運行速度",
+            "只是一種行業習慣"
+        ],
+        answer: 1,
+        category: "專業知識",
+        explanation: "微粒控制非常重要，因為微小的顆粒可能導致晶片缺陷，直接影響產品良率和品質，尤其在先進製程中更為關鍵。"
+    },
+    {
+        question: "設備工程師在進行設備升級時，應優先考慮什麼因素？",
+        options: [
+            "僅考慮成本因素",
+            "僅考慮性能提升",
+            "綜合評估效益、風險、成本和兼容性",
+            "僅遵循供應商建議"
+        ],
+        answer: 2,
+        category: "設備維護",
+        explanation: "設備升級應綜合評估效益、風險、成本和兼容性，確保升級能帶來實質改善，同時不會對現有系統造成負面影響。"
+    },
+    {
+        question: "半導體設備工程師的職業發展方向可能包括哪些？",
+        options: [
+            "只能做設備維護",
+            "技術專家、設備經理、專案管理或技術支援等多種方向",
+            "只能轉向銷售崗位",
+            "沒有明確的職業發展路徑"
+        ],
+        answer: 1,
+        category: "職業發展",
+        explanation: "半導體設備工程師的職業發展方向多元，可以成為技術專家、設備經理、專案管理人員，或轉向技術支援、應用工程等領域。"
+    }
+];
 
-    // 生成測驗題目
+// 初始化測驗
+function initQuiz() {
     const quizForm = document.getElementById('quiz-form');
 
+    // 生成所有題目
     quizData.forEach((questionData, index) => {
         const questionContainer = document.createElement('div');
         questionContainer.className = 'question-container';
         questionContainer.id = `question-${index}`;
 
-        const questionElement = document.createElement('div');
-        questionElement.className = 'question';
-        questionElement.textContent = questionData.question;
+        // 題目標題
+        const questionTitle = document.createElement('h3');
+        questionTitle.className = 'question-title';
+        questionTitle.textContent = `${index + 1}. ${questionData.question}`;
+        questionContainer.appendChild(questionTitle);
 
+        // 選項容器
         const optionsContainer = document.createElement('div');
-        optionsContainer.className = 'options';
+        optionsContainer.className = 'options-container';
 
+        // 生成選項
         questionData.options.forEach((option, optionIndex) => {
-            const optionElement = document.createElement('label');
-            optionElement.className = 'option';
+            const optionLabel = document.createElement('label');
+            optionLabel.className = 'option-label';
 
             const radioInput = document.createElement('input');
             radioInput.type = 'radio';
             radioInput.name = `question-${index}`;
             radioInput.value = optionIndex;
+            radioInput.required = true;
 
             const optionText = document.createTextNode(option);
 
-            optionElement.appendChild(radioInput);
-            optionElement.appendChild(optionText);
-            optionsContainer.appendChild(optionElement);
+            optionLabel.appendChild(radioInput);
+            optionLabel.appendChild(optionText);
+            optionsContainer.appendChild(optionLabel);
         });
 
-        const resultContainer = document.createElement('div');
-        resultContainer.className = 'result hidden';
-        resultContainer.id = `result-${index}`;
-
-        questionContainer.appendChild(questionElement);
         questionContainer.appendChild(optionsContainer);
-        questionContainer.appendChild(resultContainer);
+
+        // 添加反饋區域（初始隱藏）
+        const feedbackDiv = document.createElement('div');
+        feedbackDiv.className = 'feedback hidden';
+        feedbackDiv.id = `feedback-${index}`;
+        questionContainer.appendChild(feedbackDiv);
 
         quizForm.appendChild(questionContainer);
     });
 
-    // 提交按鈕事件處理
-    const submitBtn = document.getElementById('submit-btn');
-    submitBtn.addEventListener('click', evaluateQuiz);
+    // 添加提交按鈕事件
+    document.getElementById('submit-btn').addEventListener('click', submitQuiz);
+    document.getElementById('reset-btn').addEventListener('click', resetQuiz);
+}
 
-    function evaluateQuiz() {
-        let score = 0;
-        let unanswered = 0;
-        const categoryErrors = {
-            '工作內容': 0,
-            '工作時間': 0,
-            '面試準備': 0,
-            '專業知識': 0,
-            '公司福利': 0
-        };
+// 提交測驗
+function submitQuiz() {
+    let score = 0;
+    const categoryResults = {};
 
-        // 分類題目
-        const categories = {
-            '工作內容': [0, 3, 16],
-            '工作時間': [1, 6],
-            '面試準備': [2, 4, 7, 9, 17, 19],
-            '專業知識': [8, 10, 11, 13],
-            '公司福利': [5, 12, 14, 15, 18]
-        };
+    // 檢查每個問題的答案
+    quizData.forEach((questionData, index) => {
+        const selectedOption = document.querySelector(`input[name="question-${index}"]:checked`);
+        const feedbackDiv = document.getElementById(`feedback-${index}`);
+        const questionContainer = document.getElementById(`question-${index}`);
 
-        quizData.forEach((questionData, index) => {
-            const selectedOption = document.querySelector(`input[name="question-${index}"]:checked`);
-            const resultContainer = document.getElementById(`result-${index}`);
-            resultContainer.classList.remove('hidden', 'correct', 'incorrect');
-            resultContainer.innerHTML = '';
+        // 初始化類別統計
+        if (!categoryResults[questionData.category]) {
+            categoryResults[questionData.category] = {
+                total: 0,
+                correct: 0
+            };
+        }
+        categoryResults[questionData.category].total++;
 
-            // 檢查是否有回答
-            if (!selectedOption) {
-                unanswered++;
-                resultContainer.classList.add('incorrect');
-                resultContainer.innerHTML = `<p>未作答！</p><p class="explanation">正確答案：${questionData.options[questionData.correctAnswer]}</p><p class="explanation">${questionData.explanation}</p>`;
-                return;
-            }
+        if (selectedOption) {
+            const selectedValue = parseInt(selectedOption.value);
 
-            const selectedAnswer = parseInt(selectedOption.value);
-
-            if (selectedAnswer === questionData.correctAnswer) {
+            // 檢查答案是否正確
+            if (selectedValue === questionData.answer) {
                 score++;
-                resultContainer.classList.add('correct');
-                resultContainer.innerHTML = `<p>正確！</p><p class="explanation">${questionData.explanation}</p>`;
+                feedbackDiv.className = 'feedback correct';
+                feedbackDiv.textContent = '正確！';
+                categoryResults[questionData.category].correct++;
             } else {
-                resultContainer.classList.add('incorrect');
-                resultContainer.innerHTML = `<p>錯誤！</p><p class="explanation">正確答案：${questionData.options[questionData.correctAnswer]}</p><p class="explanation">${questionData.explanation}</p>`;
-
-                // 計算各類別錯誤數
-                for (const category in categories) {
-                    if (categories[category].includes(index)) {
-                        categoryErrors[category]++;
-                        break;
-                    }
-                }
+                feedbackDiv.className = 'feedback incorrect';
+                feedbackDiv.innerHTML = `
+                    <div>錯誤！</div>
+                    <div class="correct-answer">正確答案: ${questionData.options[questionData.answer]}</div>
+                    <div>${questionData.explanation}</div>
+                `;
             }
-        });
 
-        // 顯示分數和分析
-        const scoreContainer = document.getElementById('score-container');
-        const scoreDisplay = document.getElementById('score-display');
-        const analysisDisplay = document.getElementById('analysis');
+            // 禁用選項
+            const options = questionContainer.querySelectorAll('input[type="radio"]');
+            options.forEach(option => {
+                option.disabled = true;
+            });
 
-        scoreDisplay.textContent = `得分：${score} / ${quizData.length} (${Math.round(score/quizData.length*100)}%)`;
+            // 標記正確答案
+            const correctLabel = questionContainer.querySelectorAll('.option-label')[questionData.answer];
+            correctLabel.style.borderColor = '#4CAF50';
 
-        // 生成分析報告
-        let analysisHTML = '<h3>答題分析：</h3>';
-
-        if (unanswered > 0) {
-            analysisHTML += `<p>您有 ${unanswered} 題未作答，請確保回答所有問題。</p>`;
+            // 顯示反饋
+            feedbackDiv.classList.remove('hidden');
         }
+    });
 
-        analysisHTML += '<h4>需要加強的領域：</h4><ul>';
+    // 顯示分數
+    document.getElementById('score').textContent = score;
+    document.getElementById('progress-fill').style.width = `${(score / quizData.length) * 100}%`;
+    document.getElementById('score-section').classList.remove('hidden');
 
-        let hasWeakness = false;
-        for (const category in categoryErrors) {
-            const totalInCategory = categories[category].length;
-            const errorRate = categoryErrors[category] / totalInCategory;
+    // 生成分析摘要
+    generateAnalysisSummary(categoryResults);
 
-            if (errorRate > 0.5) {
-                hasWeakness = true;
-                analysisHTML += `<li><strong>${category}</strong>：錯誤率 ${Math.round(errorRate*100)}%，建議加強此領域的知識。</li>`;
-            }
-        }
+    // 隱藏提交按鈕，顯示重置按鈕
+    document.getElementById('submit-btn').classList.add('hidden');
+    document.getElementById('reset-btn').classList.remove('hidden');
 
-        if (!hasWeakness) {
-            analysisHTML += '<li>您在各領域的表現都不錯！</li>';
-        }
+    // 滾動到頂部
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-        analysisHTML += '</ul>';
+// 生成分析摘要
+function generateAnalysisSummary(categoryResults) {
+    const analysisSummary = document.getElementById('analysis-summary');
+    analysisSummary.innerHTML = '<h3>類別分析</h3>';
 
-        if (score === quizData.length) {
-            analysisHTML += '<p>恭喜您全部答對！您對日月光設備工程師的工作已有充分了解。</p>';
-        } else if (score >= quizData.length * 0.8) {
-            analysisHTML += '<p>您的表現很好！對日月光設備工程師的工作有良好的理解。</p>';
-        } else if (score >= quizData.length * 0.6) {
-            analysisHTML += '<p>您的表現尚可，但仍有改進空間。建議多了解日月光設備工程師的工作內容和要求。</p>';
+    // 計算每個類別的表現
+    for (const category in categoryResults) {
+        const result = categoryResults[category];
+        const percentage = Math.round((result.correct / result.total) * 100);
+
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'category-analysis';
+
+        const categoryTitle = document.createElement('div');
+        categoryTitle.className = 'category-title';
+        categoryTitle.textContent = `${category}: ${result.correct}/${result.total} (${percentage}%)`;
+
+        const recommendation = document.createElement('div');
+        if (percentage < 60) {
+            recommendation.textContent = `建議: 需要加強 ${category} 相關知識。`;
+        } else if (percentage < 80) {
+            recommendation.textContent = `建議: ${category} 知識有基礎，但仍需深入學習。`;
         } else {
-            analysisHTML += '<p>您對日月光設備工程師的了解還不夠充分，建議深入學習相關知識。</p>';
+            recommendation.textContent = `建議: ${category} 掌握良好，可以進一步鞏固。`;
         }
 
-        analysisDisplay.innerHTML = analysisHTML;
-        scoreContainer.classList.remove('hidden');
-
-        // 滾動到頁面頂部
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        categoryDiv.appendChild(categoryTitle);
+        categoryDiv.appendChild(recommendation);
+        analysisSummary.appendChild(categoryDiv);
     }
-});
+
+    // 添加總體評價
+    const totalScore = parseInt(document.getElementById('score').textContent);
+    const totalPercentage = Math.round((totalScore / quizData.length) * 100);
+
+    const overallDiv = document.createElement('div');
+    overallDiv.style.marginTop = '15px';
+    overallDiv.style.fontWeight = 'bold';
+
+    if (totalPercentage < 60) {
+        overallDiv.textContent = '總體評價: 需要加強基礎知識，建議系統性學習半導體設備相關知識。';
+    } else if (totalPercentage < 80) {
+        overallDiv.textContent = '總體評價: 具備基本知識，可針對薄弱環節進行強化。';
+    } else {
+        overallDiv.textContent = '總體評價: 表現優秀，具備扎實的半導體設備工程知識。';
+    }
+
+    analysisSummary.appendChild(overallDiv);
+}
+
+// 重置測驗
+function resetQuiz() {
+    // 重置表單
+    document.getElementById('quiz-form').reset();
+
+    // 啟用所有選項
+    const options = document.querySelectorAll('input[type="radio"]');
+    options.forEach(option => {
+        option.disabled = false;
+    });
+
+    // 隱藏所有反饋
+    const feedbacks = document.querySelectorAll('.feedback');
+    feedbacks.forEach(feedback => {
+        feedback.classList.add('hidden');
+    });
+
+    // 重置選項樣式
+    const optionLabels = document.querySelectorAll('.option-label');
+    optionLabels.forEach(label => {
+        label.style.borderColor = '#e0e0e0';
+    });
+
+    // 隱藏分數區域
+    document.getElementById('score-section').classList.add('hidden');
+
+    // 顯示提交按鈕，隱藏重置按鈕
+    document.getElementById('submit-btn').classList.remove('hidden');
+    document.getElementById('reset-btn').classList.add('hidden');
+}
+
+// 頁面加載時初始化測驗
+document.addEventListener('DOMContentLoaded', initQuiz);
